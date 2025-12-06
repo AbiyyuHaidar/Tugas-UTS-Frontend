@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - SparePartID</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1>Abiix Part.ID - Admin</h1>
+        <div class="tagline">Kelola Produk</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div id="adminInfo" style="color:var(--muted)"></div>
+        <a href="index.html" class="btn">Toko</a>
+        <button id="logoutBtn" class="btn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+      <button id="btnAdd" class="btn primary">+ Tambah Produk</button>
+      <button id="btnExport" class="btn">Export file produk</button>
+      <button id="btnImport" class="btn">Import file produk</button>
+      <input id="importFile" type="file" accept=".json,application/json" class="hidden">
+      <button id="btnClear" class="btn">Hapus Semua Produk</button>
+    </section>
+
+    <section id="productList" class="product-list"></section>
+  </main>
+
+  <div id="overlay" class="overlay hidden"></div>
+
+  <aside id="formPanel" class="panel hidden" role="dialog">
+    <div class="panel-head"><h2 id="formTitle">Tambah Produk</h2><button id="closeForm" class="icon-btn">✕</button></div>
+    <form id="productForm" novalidate>
+      <input type="hidden" id="productId">
+      <label>Nama Produk<input id="name" required></label>
+      <label>Kategori
+        <select id="category"><option value="engine">Engine</option><option value="suspension">Suspension</option><option value="electrical">Electrical</option><option value="accessory">Accessory</option></select>
+      </label>
+      <div class="row">
+        <label>Harga (Rp)<input id="price" type="text" required inputmode="numeric">
+        <label>Stok (pcs)<input id="stock" type="number" min="0" required></label>
+      </div>
+      <label>Condition<div class="radios"><label><input name="condition" type="radio" value="new" checked> Baru</label><label><input name="condition" type="radio" value="used"> Bekas</label></div></label>
+      <label><input id="aftermarket" type="checkbox"> Produk Aftermarket</label>
+
+      <label class="upload-label">Foto Produk</label>
+      <div id="dropZone" class="drop-zone" tabindex="0">
+        <div class="dz-text">Tarik & lepas file atau pilih</div>
+        <div class="dz-hint">JPG/PNG - max 3MB</div>
+        <button id="chooseFileBtn" type="button" class="btn">Pilih File</button>
+        <input id="fileInput" type="file" accept="image/*" class="hidden">
+      </div>
+      <div id="imgPreview" class="img-preview hidden"></div>
+
+      <label>Deskripsi<textarea id="desc" rows="3"></textarea></label>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Simpan</button>
+        <button type="button" id="cancelBtn" class="btn">Batal</button>
+      </div>
+      <div id="formFeedback" class="feedback"></div>
+    </form>
+  </aside>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
+<input id="price" type="text" required inputmode="numeric">

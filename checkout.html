@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checkout - SparePartID</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <header class="site-header"><div class="container header-inner"><div><h1>Abiix Part.ID</h1><div class="tagline">Checkout</div></div><a href="index.html" class="btn">Kembali</a></div></header>
+
+  <main class="container">
+    <section class="checkout-form">
+      <form id="checkoutForm">
+        <label>Nama Penerima<input id="buyerName" required></label>
+        <label>No. Telepon<input id="buyerPhone" required></label>
+        <label>Alamat Lengkap<textarea id="buyerAddress" rows="4" required></textarea></label>
+        <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:12px">
+          <button class="btn primary" type="submit">Konfirmasi Pesanan</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    document.getElementById('checkoutForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('buyerName').value.trim();
+      const phone = document.getElementById('buyerPhone').value.trim();
+      const addr = document.getElementById('buyerAddress').value.trim();
+      if(!name||!phone||!addr){ alert('Lengkapi semua data'); return; }
+      const cart = loadCart();
+      if(cart.length===0){ alert('Keranjang kosong'); return; }
+      const products = loadProducts();
+      let items = [], total=0;
+      cart.forEach(ci=>{
+        const p = products.find(x=>x.id===ci.id);
+        if(p){
+          const qty = Math.min(ci.qty, p.stock);
+          const subtotal = p.price * qty;
+          items.push({ id:p.id, name:p.name, price:p.price, qty, subtotal });
+          total += subtotal;
+          p.stock = Math.max(0, p.stock - qty);
+        }
+      });
+      // save updated products
+      saveProducts(products);
+      // create order
+      const orderId = 'ORD'+Date.now().toString().slice(-8);
+      const orders = loadOrders();
+      orders.unshift({ orderId, buyer:{name,phone,addr}, items, total, createdAt:new Date().toISOString() });
+      saveOrders(orders);
+      // clear cart
+      clearCart();
+      // redirect to success
+      location.href = 'success.html?order='+orderId;
+    });
+  </script>
+</body>
+</html>

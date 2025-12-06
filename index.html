@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Abiix Part.ID - Toko</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1>Abiix Part.ID</h1>
+        <div class="tagline">Sparepart & Aftermarket part for ur car</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="cartBtn" class="btn">Keranjang</button>
+        <a href="login.html" class="btn">Admin Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="searchInput" type="search" placeholder="Cari produk...">
+      <select id="categoryFilter">
+        <option value="all">Semua Kategori</option>
+        <option value="engine">Engine</option>
+        <option value="suspension">Wheels and Suspension</option>
+        <option value="electrical">Electrical</option>
+        <option value="accessory">Accessory</option>
+      </select>
+      <div class="stats"><span id="totalItems">0 Produk</span></div>
+    </section>
+
+    <section id="productList" class="product-list" aria-live="polite"></section>
+  </main>
+
+  <!-- Cart drawer -->
+  <div id="cartDrawer" class="cart-drawer hidden" aria-hidden="true">
+    <div class="cart-header">
+      <strong>Keranjang</strong>
+      <button id="closeCart" class="icon-btn">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+      <div><strong id="cartTotalText">Total: Rp 0</strong></div>
+      <div>
+        <button id="clearCartBtn" class="btn">Kosongkan</button>
+        <a id="checkoutBtn" class="btn primary" href="checkout.html">Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay hidden" style="z-index:110"></div>
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

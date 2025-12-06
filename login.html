@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Login</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <header class="site-header"><div class="container header-inner"><div><h1>Abiix Part.ID</h1><div class="tagline">Admin Login</div></div></div></header>
+
+  <main class="container">
+    <section style="max-width:420px;margin:30px auto;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:16px;border-radius:10px">
+      <form id="loginForm">
+        <label>Nama<input id="adminName" required></label>
+        <label>PIN<input id="adminPin" type="password" maxlength="6" required></label>
+        <div style="display:flex;justify-content:flex-end;margin-top:12px">
+          <button class="btn primary" type="submit">Masuk</button>
+        </div>
+      </form>
+      <p style="margin-top:10px;color:var(--muted)"> <strong></strong></p>
+    </section>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

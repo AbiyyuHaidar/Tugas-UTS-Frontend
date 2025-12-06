@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pesanan Berhasil</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <header class="site-header"><div class="container header-inner"><div><h1>Abiix Part.ID</h1><div class="tagline">Pesanan Berhasil</div></div><a href="index.html" class="btn">Kembali</a></div></header>
+  <main class="container" id="main"></main>
+
+  <script src="js/data.js"></script>
+  <script>
+    function currency(n){ return 'Rp '+Number(n).toLocaleString('id-ID'); }
+    const params = new URLSearchParams(location.search);
+    const orderId = params.get('order');
+    const orders = loadOrders();
+    const order = orders.find(o=> o.orderId === orderId);
+    const main = document.getElementById('main');
+    if(!order){ main.innerHTML = '<p>Pesanan tidak ditemukan.</p>'; }
+    else {
+      main.innerHTML = `<article class="card"><h2>Terima kasih, pesanan diterima!</h2>
+        <p>No. Order: <strong>${order.orderId}</strong></p>
+        <p>Nama: ${order.buyer.name}</p>
+        <p>Telp: ${order.buyer.phone}</p>
+        <p>Alamat: ${order.buyer.addr}</p>
+        <h3>Ringkasan</h3>
+        ${order.items.map(it=>`<div style="display:flex;justify-content:space-between"><div>${it.name} × ${it.qty}</div><div>${currency(it.subtotal)}</div></div>`).join('')}
+        <hr/>
+        <div style="text-align:right;font-weight:700">Total: ${currency(order.total)}</div>
+      </article>`;
+    }
+  </script>
+</body>
+</html>
