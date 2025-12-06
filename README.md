@@ -73,6 +73,3 @@ Jika ingin agar site bisa diakses publik (demo):
 Nama: **Abiyyu Haidar**
 NIM: *1002240055*
 Mata Kuliah : Pemrograman Web / Front-End
-* menambahkan screenshot otomatis dan badge GitHub Pages.
-
-Mau mana yan
