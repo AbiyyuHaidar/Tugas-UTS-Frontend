@@ -52,6 +52,7 @@ Project ini merupakan implementasi frontend sederhana untuk **toko sparepart** l
 Atau jalankan live server di VS Code untuk pengalaman yang lebih baik:
 
 * Install ekstensi Live Server → klik `Go Live` → buka `http://127.0.0.1:5500/index.html`
+* atau langsung buka link ini : https://abiyyuhaidar.github.io/Tugas-UTS-Frontend/
 
 ## 🌐 Deploy di GitHub Pages
 
